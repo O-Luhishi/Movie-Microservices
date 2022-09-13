@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package movie_catalog_service;
+
+option go_package = "server/pb";
+
+message Movie {
+  string movie_id = 1;
+  string movie_name = 2;
+  string release_date = 3;
+  string description = 4;
+}
+
+message GetMovieRequest{
+  string id = 1;
+}
+message GetMovieListRequest {}
+message GetMovieListResponse{
+  repeated Movie movies = 1;
+}
+
+service MovieCatalogService {
+  rpc GetMovie(GetMovieRequest) returns (Movie);
+  rpc GetMovieList(GetMovieListRequest) returns (GetMovieListResponse);
+}
